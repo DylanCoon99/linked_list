@@ -70,3 +70,43 @@ func (l *LinkedList) Add(v int) {
 	l.Tail = &node
 
 }
+
+
+
+func (l *LinkedList) Insert(val, pos int) {
+
+	// val is the value to insert and pos is the position (0 indexed) to insert it in
+
+	i := 0
+
+	if l.Head == nil {
+		l.Add(val)
+		return
+	}
+
+	node := Node{
+		Value: val,
+		Next:  nil,
+	}
+
+	if pos == 0 {
+		// add to the front of the list
+		node.Next = l.Head
+		l.Head = &node
+		return
+	}
+
+	cur := l.Head
+
+	for i != pos - 1 {
+		cur = cur.Next
+		i += 1
+	}
+
+	temp := cur.Next
+
+	cur.Next = &node
+	node.Next = temp
+
+
+}

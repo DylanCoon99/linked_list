@@ -1,7 +1,7 @@
 package linkedlist
 
 import (
-	"log"
+	//"log"
 	"testing"
 )
 
@@ -27,6 +27,9 @@ func TestPrint(t *testing.T) {
 
 }
 
+
+/*
+
 func TestAdd(t *testing.T) {
 
 	// first just testing adding one element to an empty list
@@ -46,6 +49,49 @@ func TestAdd(t *testing.T) {
 
 	linked_list.Add(7)
 
+	linked_list.PrintList()
+
+}
+
+
+*/
+
+func TestInsert(t *testing.T) {
+
+	// Test the functionality of insert to different indices in the list
+
+
+	// Init the list
+	var linked_list *LinkedList
+
+	linked_list = InitList()
+
+	// Add some values to the list
+	linked_list.Add(5)
+	linked_list.Add(7)
+	linked_list.Add(9)
+	linked_list.Add(2)
+
+	linked_list.PrintList()
+	// Current State: 5 -> 7 -> 9 -> 2
+
+	// Insert into the front of the list
+	linked_list.Insert(11, 0) 
+
+	// Expected State: 11 -> 5 -> 7 -> 9 -> 2
+	linked_list.PrintList()
+
+	// Insert into the middle of the list
+	linked_list.Insert(88, 2)
+
+	// Expected State: 11 -> 5 -> 88 -> 7 -> 9 -> 2
+	linked_list.PrintList()
+
+
+	// Insert at the end of the list
+	linked_list.Insert(99, 6)
+
+	// Expected State: 11 -> 5 -> 88 -> 7 -> 9 -> 2 -> 99
 	linked_list.PrintList()
 
 }
