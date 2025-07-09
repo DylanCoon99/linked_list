@@ -110,3 +110,24 @@ func (l *LinkedList) Insert(val, pos int) {
 
 
 }
+
+
+func (l *LinkedList) SearchList(val int) int {
+
+	// returns the index of the first occurence of a value 
+	// -1 if not present
+
+	i := 0
+
+	cur := l.Head
+
+	for cur != nil {
+		if cur.Value == val {
+			return i
+		}
+		i += 1
+		cur = cur.Next
+	}
+
+	return -1
+}
