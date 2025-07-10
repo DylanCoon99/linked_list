@@ -173,43 +173,31 @@ func (l *LinkedList) Reverse() {
 
 	// reverses the linked list in places
 
-	if l.Head == nil {
-		// if the list is empty just return itself
+	if l.Head == nil || l.Head.Next == nil {
+		// if the list is empty or is only 1 node; just return
 		return 
 	}
 
-
-	// I am going to use a stack to reverse the list
-	stack := []*Node{}
-
-
+	var prev *Node
+	
+	prev = nil
 	cur := l.Head
 
-	for cur != nil {
-		stack = append(stack, cur)
-		cur = cur.Next
+	l.Tail = l.Head
+
+	next := cur.Next
+
+	for cur.Next != nil {
+		// cur points to prev; cur becomes next; prev becomes cur
+		cur.Next = prev
+		prev = cur
+		cur = next
+		next = cur.Next
 	}
 
-	// while the stack is not empty; pop from the stack and add it to the list
-	node := stack[len(stack) - 1]
-	stack = stack[:len(stack) - 1]
+	cur.Next = prev
 
-	l.Head = node
-
-	cur = l.Head
-
-
-	for len(stack) != 0 {
-		fmt.Println(len(stack))
-		node = stack[len(stack) - 1]
-		cur.Next = node
-		node.Next = nil
-		cur = cur.Next
-		stack = stack[:len(stack) - 1]
-	}
-
-	l.Tail = cur
-
+	l.Head = cur
 
 	return
 
