@@ -131,3 +131,38 @@ func (l *LinkedList) SearchList(val int) int {
 
 	return -1
 }
+
+
+
+func (l *LinkedList) Delete(val int) bool {
+
+	// deletes the first occurence of the val in the list
+	// return true is the element was found and deleted; false otherwise
+
+	if l.Head == nil {
+		return false
+	}
+
+	if l.Head.Value == val {
+		l.Head = nil
+		l.Tail = nil
+		return true
+	}
+
+
+	cur := l.Head
+
+	for cur.Next != nil {
+
+		if cur.Next.Value == val {
+			cur.Next = cur.Next.Next 
+			return true
+		}
+
+		cur = cur.Next
+	}
+
+
+	return false
+
+}
